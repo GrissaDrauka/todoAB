@@ -9,11 +9,13 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DataService } from './data.service';
 import { HttpClientModule } from '@angular/common/http';
-import { MatTableModule, MatIconModule, MatButtonModule } from '@angular/material';
+import { MatTableModule, MatIconModule, MatButtonModule, MatDialog, MatDialogModule, MatFormFieldModule, MatFormField, MatInputModule } from '@angular/material';
+import { PopUpAddComponent } from './pop-up-add/pop-up-add.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PopUpAddComponent  
   ],
   imports: [
     BrowserModule,
@@ -30,9 +32,15 @@ import { MatTableModule, MatIconModule, MatButtonModule } from '@angular/materia
     HttpClientModule,
     MatTableModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
+  entryComponents: [
+    PopUpAddComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
