@@ -23,4 +23,10 @@ export class AppComponent implements OnInit{
     })
   }
 
+  public deleteToDo(toDoId){
+    this.toDoService.deleteToDo(toDoId).subscribe(()=>{
+        this.toDoList = this.toDoList.filter(item => item.id != toDoId);
+        console.log("ToDo deleted: ", toDoId);
+    })
+}
 }
