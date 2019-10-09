@@ -2,6 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { TodoService } from './todo.service';
 import { MatDialog } from '@angular/material';
 import { PopUpAddComponent } from './pop-up-add/pop-up-add.component';
+import { PopUpDetailsComponent } from './pop-up-details/pop-up-details.component';
+
+export interface toDo{
+  id : number,
+  title : string,
+  description : string,
+  state : boolean
+}
 
 @Component({
   selector: 'app-root',
@@ -13,9 +21,10 @@ export class AppComponent implements OnInit{
   title = 'todoAB';
   toDoList : any[] = [];
   displayedColumns : string[] = [];
+  toDoAdd : toDo = null;
 
   constructor(public dialog: MatDialog, private toDoService : TodoService){
-    this.displayedColumns = ['title', 'description', 'state', 'action'];
+    this.displayedColumns = ['title', 'state', 'action'];
   }
 
   ngOnInit(){
@@ -45,4 +54,17 @@ export class AppComponent implements OnInit{
       })
     });
   }
+
+  public openDetails(toDoId){
+    this.toDoService.getToDo(toDoId).subscribe((data : toDo)=>{
+      console.log("app component " + data.title);
+      this.toDoAdd = data;
+      const dialogDetails = this.dialog.open(PopUpDetailsComponent, {
+        width: '50%',
+        height: '50%',
+        data : {title : data.title, description : data.description, state : data.state}
+      })
+    })
+    
+  } 
 }

@@ -9,13 +9,15 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DataService } from './data.service';
 import { HttpClientModule } from '@angular/common/http';
-import { MatTableModule, MatIconModule, MatButtonModule, MatDialog, MatDialogModule, MatFormFieldModule, MatFormField, MatInputModule } from '@angular/material';
+import { MatTableModule, MatIconModule, MatButtonModule, MatDialog, MatDialogModule, MatFormFieldModule, MatFormField, MatInputModule, MatLabel, MatCheckboxModule } from '@angular/material';
 import { PopUpAddComponent } from './pop-up-add/pop-up-add.component';
+import { PopUpDetailsComponent } from './pop-up-details/pop-up-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PopUpAddComponent  
+    PopUpAddComponent,
+    PopUpDetailsComponent  
   ],
   imports: [
     BrowserModule,
@@ -35,11 +37,13 @@ import { PopUpAddComponent } from './pop-up-add/pop-up-add.component';
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatCheckboxModule    
   ],
   providers: [],
   entryComponents: [
-    PopUpAddComponent
+    PopUpAddComponent,
+    PopUpDetailsComponent
   ],
   bootstrap: [AppComponent]
 })

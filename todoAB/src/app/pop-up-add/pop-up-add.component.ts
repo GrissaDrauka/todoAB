@@ -17,8 +17,7 @@ export interface toDo{
 })
 
 export class PopUpAddComponent implements OnInit {
-/*   @ViewChild('title') title: ElementRef;
- */
+
   constructor(public dialogAdd: MatDialogRef<PopUpAddComponent>, @Inject(MAT_DIALOG_DATA) public id : number, public toDoService : TodoService) {}
 
   ngOnInit() {

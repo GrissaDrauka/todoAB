@@ -24,9 +24,12 @@
     <ng-container matColumnDef="action">
         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <button mat-icon-button color="warn" (click)="deleteToDo(element.id)">
+          <button mat-icon-button color="warn" (click)="deleteToDo(element.id)" aria-label="Delete this to do">
             <mat-icon>delete</mat-icon>
           </button>
+          <button mat-icon-button color="primary" (click)="openDetails(element.id)" aria-label="View details">
+              <mat-icon>chat_bubble_outline</mat-icon>
+            </button>
         </mat-cell>
       </ng-container>
 
@@ -36,5 +39,5 @@
 </div>
 
 <div class="button">
-  <button mat-icon-button (click)="openDialog()"><mat-icon [ngStyle]="{'color': green}">add</mat-icon></button>
+  <button mat-fab (click)="openDialog()"><mat-icon [ngStyle]="{'color': green}">add</mat-icon></button>
 </div>
