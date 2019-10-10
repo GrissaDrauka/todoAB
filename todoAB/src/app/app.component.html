@@ -1,11 +1,16 @@
 <h1>{{title}}</h1>
+
 <div class="mat-elevation-z8">
-  <mat-table [dataSource]="toDoList" col-md-8>
+  <mat-table [dataSource]="toDoList">
 
     <!-- Title Column -->
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+      <mat-cell *matCellDef="let element; let i = index;">
+        <mat-checkbox [checked]="element.state" 
+                      (change)="onChange($event, i, element)"> 
+          {{element.title}} 
+        </mat-checkbox></mat-cell>
     </ng-container>
 
     <!-- Description Column -->
@@ -16,7 +21,7 @@
 
     <!-- State Column -->
     <ng-container matColumnDef="state">
-      <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef > State </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.state ? 'Done' : 'To Be Done'}} </mat-cell>
     </ng-container>
 

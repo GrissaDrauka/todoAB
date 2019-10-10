@@ -22,6 +22,7 @@ export class AppComponent implements OnInit{
   toDoList : any[] = [];
   displayedColumns : string[] = [];
   toDoAdd : toDo = null;
+  lastAction : string;
 
   constructor(public dialog: MatDialog, private toDoService : TodoService){
     this.displayedColumns = ['title', 'state', 'action'];
@@ -29,7 +30,6 @@ export class AppComponent implements OnInit{
 
   ngOnInit(){
     this.toDoService.getToDoList().subscribe((data : any[])=>{
-      console.log(data);
       this.toDoList = data;
     })
   }
@@ -66,5 +66,22 @@ export class AppComponent implements OnInit{
       })
     })
     
-  } 
+  }
+  
+  onChange(event, index, item) {
+
+    item.state = !item.state;
+
+    this.lastAction = 'index: ' + index + ', label: ' + item.title + ', checked: ' + item.state;
+
+    console.log(index, event, item);
+
+    this.toDoService.updateToDo(item).subscribe(()=>{
+      this.toDoList.map((toDo)=> toDo.state).
+      filter((state) => (state === false));
+      this.toDoList = this.toDoList.filter(toDo => toDo.id != item.id);
+      this.toDoList = this.toDoList.concat(item);
+    })
+  }
+
 }
