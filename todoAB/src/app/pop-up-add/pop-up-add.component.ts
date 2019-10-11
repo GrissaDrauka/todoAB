@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, ElementRef, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TodoService } from '../todo.service';
+import { FormControl, Validators } from '@angular/forms';
 
 export interface toDo{
   id : number,
